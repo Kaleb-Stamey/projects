@@ -33,5 +33,6 @@ public class Game {
 	private void displayRules() {
 		System.out.println("How to Play:");
 		
+		
 	}
 }
