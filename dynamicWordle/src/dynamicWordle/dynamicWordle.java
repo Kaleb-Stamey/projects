@@ -12,7 +12,7 @@ public class dynamicWordle {
 			LinkedList<String> myWordList = new LinkedList<>();
 			
 			//Adds Words to linked list using a text file
-			File myWordFile = new File("words.txt.txt");
+			File myWordFile = new File("words.txt");
 			Scanner readFile = new Scanner(myWordFile);
 			
 			while(readFile.hasNext()) {
