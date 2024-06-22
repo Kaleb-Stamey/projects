@@ -22,12 +22,6 @@ public class Game {
 	}
 	
 	public void playGame() {
-		System.out.println("Welcome to DynamicWordle!");
-		System.out.print("Would you like to hear how to play? (Yes || no): ");
-		String answer = myScanner.nextLine();
-		if(answer.toUpperCase().equals("YES")) {
-			displayRules(); 
-		}
 		
 		//use get a random word and setup the game based on that word
 		//after each round as the user if they want to play again 
@@ -37,9 +31,13 @@ public class Game {
 		 * make the user guess again ( this wouldn't get rid of a turn)
 		 */
 		
+		String word = getWord();
+		for(int i = 0; i < word.length(); i++) {
+			System.out.print(" - ");
+		}
 	}
 	
-	private void displayRules() {
+	public void displayRules() {
 		System.out.println("How to Play:");
 		
 		
