@@ -12,17 +12,13 @@ public class dynamicWordle {
 			LinkedList<String> myWordList = new LinkedList<>();
 			
 			//Adds Words to linked list using a text file
-			File myWordFile = new File("words.txt");
+			File myWordFile = new File("words.txt.txt");
 			Scanner readFile = new Scanner(myWordFile);
 			
 			while(readFile.hasNext()) {
 				myWordList.add(readFile.next());
 			}
-			
-			for(int i = 0; i < myWordList.size(); i++) {
-				System.out.println(myWordList.get(i));
-			}
-			
+				
 			Game myGame = new Game(myWordList);
 			myGame.playGame();
 			
