@@ -18,7 +18,11 @@ public class dynamicWordle {
 			while(readFile.hasNext()) {
 				myWordList.add(readFile.next());
 			}
-				
+			
+			for(int i = 0; i < myWordList.size(); i++) {
+				System.out.println(myWordList.get(i));
+			}
+			
 			Game myGame = new Game(myWordList);
 			myGame.playGame();
 			
