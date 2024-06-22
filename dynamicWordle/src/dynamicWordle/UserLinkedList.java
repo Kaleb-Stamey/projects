@@ -1,36 +1,106 @@
 package dynamicWordle;
 
 
-// This class is to store the user data for each user
-// Stores the users in alphabetical order
-// Used when logging a user in.
 public class UserLinkedList {
+	/**
+	 * This linked list stores users in alphabetical order.
+	 */
 	Node head;
 	
 	public UserLinkedList() {
 		head = null;
-	}
+	}// constructor
+	
+	
 	
 	public void addUser(User user) {
 		Node previous = null;
 		Node current = head;
+		boolean found = false;
 		
 		if(current == null){
 			head = new Node(user);
 		}
 		
 		else {
-			//add the node in alphabetical order
+			while(current != null && !found) {
+				if(current.user.getName().compareTo(user.getName()) > 0) {
+					found = true;
+				}
+				
+				else {
+					previous = current;
+					current = current.next;
+				}
+			}
+			
+			if(found) {
+				Node tempUser = new Node(user);
+				tempUser.next = current;
+				previous.next = tempUser;
+			}
 		}
-	}
+	}// add user 
 	
-	public void addScore(String name) {
-		// add score
-	}
+	
+	
+	public void addScore(String name, int score) {
+		Node current = head;
+		boolean found = false;
+		
+		if(head == null) {
+			System.out.println("There are no users");
+		}
+		
+		else {
+			while(current != null && !found) {
+				if(current.user.getName().equals(name)) {
+					found = true;
+				}
+				
+				else {
+					current = current.next;
+				}	
+			}
+			
+			if(found) {
+				current.user.updateScore(score);
+			}
+			else {
+				System.out.println("User isn't in List");
+			}
+			
+		}
+	}//add score 
+	
+	
 	
 	public void removeUser(String name) {
-		//remove user 
-	}
+		Node previous = null;
+		Node current = head;
+		boolean found = false;
+		
+		if(current == null) {
+			System.out.println("There are no users in the list");
+		}
+		
+		else {
+			while(current != null && !found) {
+				if(current.user.getName().equals(name)) {
+					found = true;
+				}
+				
+				else {
+					previous = current;
+					current = current.next;
+				}
+			}
+			
+			if(found) {
+				previous.next = current.next;
+			}
+		}
+	}//remove user
 	
 	
 	
@@ -42,5 +112,5 @@ public class UserLinkedList {
 			this.user = user;
 			next = null;
 		}
-	}
+	}//node
 }
