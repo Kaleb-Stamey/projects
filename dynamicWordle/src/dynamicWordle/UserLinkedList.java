@@ -13,7 +13,6 @@ public class UserLinkedList {
 		head = null;
 	}// constructor
 	
-	
 	//Adds a user to the Linked List in alphabetical order.
 	//Parameter: User user: User to add the the LL
 	public void addUser(User user) {
@@ -44,7 +43,6 @@ public class UserLinkedList {
 		}
 	}// add user 
 	
-	
 	//Updates the score for one user
 	//Takes in the name of the current user and the score to add 
 	public void addScore(String name, int score) {
@@ -74,7 +72,6 @@ public class UserLinkedList {
 		}
 	}//add score 
 	
-	
 	//Removes a user from the LinkedList
 	//Takes in the name of the user to be deleted
 	public void removeUser(String name) {
@@ -102,6 +99,7 @@ public class UserLinkedList {
 			}
 		}
 	}//remove user
+<<<<<<< HEAD
 
 	public boolean findUser(String name) {
 		boolean found = false;
@@ -116,6 +114,8 @@ public class UserLinkedList {
 		}
 		return found;
 	}
+=======
+>>>>>>> refs/remotes/origin/Java
 	
 	//Inner node class for linked list
 	public class Node {
