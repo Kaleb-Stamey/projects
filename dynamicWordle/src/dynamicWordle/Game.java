@@ -4,8 +4,8 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Game {
-	LinkedList<String> words;
-	Scanner myScanner = new Scanner(System.in);
+	private LinkedList<String> words;
+	private Scanner myScanner = new Scanner(System.in);
 	
 	public Game(LinkedList<String> words) {
 		this.words = words;
@@ -32,6 +32,7 @@ public class Game {
 		 */
 		
 		String word = getWord();
+		
 		for(int i = 0; i < word.length(); i++) {
 			System.out.print(" - ");
 		}
@@ -39,7 +40,5 @@ public class Game {
 	
 	public void displayRules() {
 		System.out.println("How to Play:");
-		
-		
 	}
 }

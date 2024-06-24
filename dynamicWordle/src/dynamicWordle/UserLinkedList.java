@@ -5,7 +5,8 @@ public class UserLinkedList {
 	/**
 	 * This linked list stores users in alphabetical order.
 	 */
-	Node head;
+	private int size;
+	private Node head;
 	
 	//Constructor for this class
 	public UserLinkedList() {
@@ -23,13 +24,11 @@ public class UserLinkedList {
 		if(current == null){
 			head = new Node(user);
 		}
-		
 		else {
 			while(current != null && !found) {
 				if(current.user.getName().compareTo(user.getName()) > 0) {
 					found = true;
 				}
-				
 				else {
 					previous = current;
 					current = current.next;
@@ -40,6 +39,7 @@ public class UserLinkedList {
 				Node tempUser = new Node(user);
 				tempUser.next = current;
 				previous.next = tempUser;
+				size++;
 			}
 		}
 	}// add user 
@@ -54,13 +54,11 @@ public class UserLinkedList {
 		if(head == null) {
 			System.out.println("There are no users");
 		}
-		
 		else {
 			while(current != null && !found) {
 				if(current.user.getName().equals(name)) {
 					found = true;
 				}
-				
 				else {
 					current = current.next;
 				}	
@@ -87,13 +85,11 @@ public class UserLinkedList {
 		if(current == null) {
 			System.out.println("There are no users in the list");
 		}
-		
 		else {
 			while(current != null && !found) {
 				if(current.user.getName().equals(name)) {
 					found = true;
 				}
-				
 				else {
 					previous = current;
 					current = current.next;
@@ -102,10 +98,24 @@ public class UserLinkedList {
 			
 			if(found) {
 				previous.next = current.next;
+				size--;
 			}
 		}
 	}//remove user
-	
+
+	public boolean findUser(String name) {
+		boolean found = false;
+		Node current = head;
+		while(!found && current != null) {
+			if(current.user.getName().toUpperCase().equals(name.toUpperCase())) {
+				found = true;
+			}
+			else {
+				current = current.next;
+			}
+		}
+		return found;
+	}
 	
 	//Inner node class for linked list
 	public class Node {
