@@ -78,7 +78,7 @@ public class dynamicWordle {
 		String validString = "";
 		while(!gotValid) {
 			validString = myScanner.nextLine();
-			System.out.printf("Is (%s) correct? (Yes/No): ", validString);
+			System.out.printf("Is %s correct? (Yes/No): ", validString);
 			boolean correct = yesNo();
 			if(correct) {
 				gotValid = true;
