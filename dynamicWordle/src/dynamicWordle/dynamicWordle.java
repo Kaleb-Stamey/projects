@@ -21,7 +21,6 @@ public class dynamicWordle {
 		}
 		
 		Game myGame = new Game(myWordList);
-		
 		int sentinel = -1;
 		boolean isSentinel = false;
 		
