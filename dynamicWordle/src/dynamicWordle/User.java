@@ -6,6 +6,7 @@ public class User {
 	
 	public User(String name) {
 		this.name = name;
+		score = 0;
 	}
 	
 	public String getName() {
@@ -22,5 +23,10 @@ public class User {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("\nName: %s Points: %d", name, score);
 	}
 }

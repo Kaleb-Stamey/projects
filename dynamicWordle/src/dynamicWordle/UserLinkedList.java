@@ -5,7 +5,7 @@ public class UserLinkedList {
 	/**
 	 * This linked list stores users in alphabetical order.
 	 */
-	private int size;
+	
 	private Node head;
 	
 	//Constructor for this class
@@ -23,6 +23,16 @@ public class UserLinkedList {
 		if(current == null){
 			head = new Node(user);
 		}
+		else if(current.next == null) {
+			Node tempUser = new Node(user);
+			if(current.user.getName().compareTo(user.getName()) > 0) {
+				tempUser.next = current;
+				head = tempUser;
+			}
+			else {
+				current.next = tempUser;
+			}
+		}
 		else {
 			while(current != null && !found) {
 				if(current.user.getName().compareTo(user.getName()) > 0) {
@@ -38,7 +48,6 @@ public class UserLinkedList {
 				Node tempUser = new Node(user);
 				tempUser.next = current;
 				previous.next = tempUser;
-				size++;
 			}
 		}
 	}// add user 
@@ -95,11 +104,9 @@ public class UserLinkedList {
 			
 			if(found) {
 				previous.next = current.next;
-				size--;
 			}
 		}
 	}//remove user
-<<<<<<< HEAD
 
 	public boolean findUser(String name) {
 		boolean found = false;
@@ -114,9 +121,37 @@ public class UserLinkedList {
 		}
 		return found;
 	}
-=======
->>>>>>> refs/remotes/origin/Java
 	
+	public int getScore(String name) {
+		int score = 0;
+		boolean found = false;
+		Node current = head;
+		while(!found && current != null) {
+			if(current.user.getName().toUpperCase().equals(name.toUpperCase())) {
+				found = true;
+			}
+			else {
+				current = current.next;
+			}
+		}
+		if(found) {
+			score = current.user.getScore();
+		}
+		return score;
+	}
+	
+	public void displayAllData() {
+		Node tempNode = head;
+		if(tempNode == null) {
+			System.out.println("There is no data yet.");
+		}
+		else {
+			while(tempNode != null) {
+				System.out.printf("\n%s",tempNode.user.toString());
+				tempNode = tempNode.next;
+			}
+		}
+	}
 	//Inner node class for linked list
 	public class Node {
 		User user;

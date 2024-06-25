@@ -15,30 +15,44 @@ public class dynamicWordle {
 		File myWordFile = new File("words.txt");
 		Scanner readFile = new Scanner(myWordFile);
 		UserLinkedList myUsers = new UserLinkedList();
-		
+	
 		while(readFile.hasNext()) {
 			myWordList.add(readFile.next());
 		}
 		
 		Game myGame = new Game(myWordList);
-		int sentinel = -1;
 		boolean isSentinel = false;
 		
 		while(!isSentinel) {
 			//signing in/up users and starting the game
-			String currentUser = userLogin(myUsers);
-			
-			System.out.printf("\nWelcome to DynamicWordle %s!\n", currentUser);
-			System.out.print("Would you like to hear how to play? (Yes/No): ");
-			String answer = myScanner.nextLine();
-			if(answer.toUpperCase().equals("YES")) {
-				myGame.displayRules(); 
+			System.out.print("Are you an Admin? (Yes/No): ");
+			boolean adminAnswer = yesNo();
+			if(adminAnswer) {
+				myUsers.displayAllData();
+				System.out.printf("\nDo you want to shut down the game? (Yes/No): ");
+				isSentinel = yesNo();
+				if(isSentinel) {
+					System.out.println("Shutting down...");
+				}
 			}
-			boolean keepPlaying = true;
-			while(keepPlaying) {
-				myGame.playGame();
-				System.out.printf("\nDo you want to keep Playing?: ");
-				keepPlaying = yesNo();
+			else {
+				String currentUser = userLogin(myUsers);
+				
+				System.out.printf("\nWelcome to DynamicWordle %s!\n", currentUser);
+				System.out.print("Would you like to hear how to play? (Yes/No): ");
+				boolean hereHowToPlay = yesNo();
+				if(hereHowToPlay) {
+					myGame.displayRules(); 
+				}
+				
+				boolean keepPlaying = true;
+				while(keepPlaying) {
+					System.out.printf("Your current score is %d\n",myUsers.getScore(currentUser));
+					myUsers.addScore(currentUser,myGame.playGame());
+					System.out.printf("\nDo you want to keep Playing?: ");
+					keepPlaying = yesNo();
+				}
+				
 			}
 			
 		}
@@ -93,20 +107,18 @@ public class dynamicWordle {
 	//Returns the name of the current user
 	public static String userLogin(UserLinkedList myUsers) {
 		System.out.println("============================================");
-		System.out.print("Do you already have an account? (Yes/No): ");
-		boolean hasAccount = yesNo();
 		System.out.print("Please Enter your name First and Last: ");
 		String name = getValidString();
-		if(!hasAccount) {
-			boolean found = myUsers.findUser(name);
-			if(!found) {
-				User tempUser = new User(name);
-				myUsers.addUser(tempUser);
-			}
-			if(found) {
-				System.out.println("you already have an account!");
-			}
+		boolean found = myUsers.findUser(name);
+		
+		if(!found) {
+			User tempUser = new User(name);
+			myUsers.addUser(tempUser);
 		}
+		if(found) {
+			System.out.println("you already have an account!");
+		}
+	
 		return name;	
 	}
 }
