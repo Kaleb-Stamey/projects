@@ -56,8 +56,9 @@ public class dynamicWordle {
 				
 				boolean keepPlaying = true;
 				while(keepPlaying) {
+					int size = getValidInt();
 					System.out.printf("Your current score is %d\n",myUsers.getScore(currentUser));
-					myUsers.addScore(currentUser,myGame.playGame());
+					myUsers.addScore(currentUser,myGame.playGame(size));
 					System.out.printf("\nDo you want to keep Playing?: ");
 					keepPlaying = yesNo();
 				}
@@ -69,6 +70,29 @@ public class dynamicWordle {
 		myScanner.close();
 		readFile.close();
 	}	
+	
+	/**
+	 * This function gets a valid integer from the user
+	 * @return Integer: valid integer obtained from user
+	 */
+	public static int getValidInt() {
+		int maxWordLength = 10;
+		int minWordLength = 0; 
+		boolean gotValidInt = false;
+		int validInt = 0;
+		while(!gotValidInt) {
+			System.out.print("Please enter an integer (1-10): ");
+			validInt = myScanner.nextInt();
+			if(validInt <= maxWordLength && validInt > minWordLength) {
+				gotValidInt = true;
+			}
+			else {
+				System.out.printf("\nError: you have not entered a valid int\n");
+			}
+		}
+		myScanner.nextLine();
+		return validInt;
+	}
 	
 	/**
 	 * Loops until valid input from user 

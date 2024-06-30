@@ -21,24 +21,32 @@ public class Game {
 	
 	/**
 	 * Gets one word at random from the words linked list
+	 * @param size: Size of word
 	 * @return String: The random word
 	 */
-	public String getWord() {
-		int randNum = (int)(Math.random() * (words.size()));
-		
-		if(randNum > words.size()) {
-			randNum = words.size();
+	public String getWord(int size) {
+		boolean notRightSize = true;
+		String word = "";
+		while(notRightSize) {
+			int randNum = (int)(Math.random() * (words.size()));
+			if(randNum > words.size()) {
+				randNum = words.size();
+			}
+			word = words.get(randNum);
+			if(word.length() == size) {
+				notRightSize = false;
+			}
 		}
-		
-		return words.get(randNum);
+		return word;
 	}
 	
 	/**
 	 * This represents one game and each game that is played will yield some points
+	 * @param size: Word size selected by user
 	 * @return Integer: The number of points obtained from that round
 	 */
-	public int playGame() {
-		String word = getWord().toLowerCase();
+	public int playGame(int size) {
+		String word = getWord(size).toLowerCase();
 		int wordLength = word.length();
 		char[] wordDisplay = new char[wordLength];
 		LinkedList<Character> charsInWord = new LinkedList<>();
@@ -112,7 +120,7 @@ public class Game {
 		System.out.printf("\nEach round you are given a random word.\n\n"
 				+ "The length of this word determines the number of guesses you get.\n\n"
 				+ "If the Number of guesses is reached and you have not guessed the word you lose.\n\n"
-				+ "Each guess MUST be a valid word that is the correct length."
+				+ "Each guess MUST be a valid word that is the correct length.\n\n"
 				+ "If you guess the word before your guesses run out points are added to your total.\n\n"
 				+ "Invalid guesses do not count as a real guess\n\n");
 	}
