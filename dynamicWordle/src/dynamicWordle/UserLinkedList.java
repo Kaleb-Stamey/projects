@@ -1,20 +1,23 @@
 package dynamicWordle;
 
-
+/**
+ * Singly linked list holds users in alphabetical order
+ * public Methods: addUser, addScore, removeUser, findUser, getScore, displayAllData 
+ * Inner Class: Node
+ * @version 1.0
+ */
 public class UserLinkedList {
-	/**
-	 * This linked list stores users in alphabetical order.
-	 */
-	
 	private Node head;
 	
-	//Constructor for this class
 	public UserLinkedList() {
 		head = null;
 	}// constructor
-	
-	//Adds a user to the Linked List in alphabetical order.
-	//Parameter: User user: User to add the the LL
+
+	/**
+	 * addUser: Adds one user to the linked list in alphabetical order
+	 * @param user: one user
+	 * @return void
+	 */
 	public void addUser(User user) {
 		Node previous = null;
 		Node current = head;
@@ -52,6 +55,12 @@ public class UserLinkedList {
 		}
 	}// add user 
 	
+	/**
+	 * addScore: Adds score to one user
+	 * @param name: name of user 
+	 * @param score: the score to add to users total
+	 * @return void
+	 */
 	//Updates the score for one user
 	//Takes in the name of the current user and the score to add 
 	public void addScore(String name, int score) {
@@ -81,6 +90,11 @@ public class UserLinkedList {
 		}
 	}//add score 
 	
+	/**
+	 * findUser: Finds user based on name 
+	 * @param name: name of the user 
+	 * @return boolean: true if user is found false otherwise
+	 */
 	//Removes a user from the LinkedList
 	//Takes in the name of the user to be deleted
 	public void removeUser(String name) {
@@ -108,6 +122,11 @@ public class UserLinkedList {
 		}
 	}//remove user
 
+	/**
+	 * Finds user based on name 
+	 * @param name: name of the user 
+	 * @return boolean: true if user is found false otherwise
+	 */
 	public boolean findUser(String name) {
 		boolean found = false;
 		Node current = head;
@@ -122,6 +141,11 @@ public class UserLinkedList {
 		return found;
 	}
 	
+	/**
+	 * Gets the score from one user
+	 * @param name: name of the user 
+	 * @return Integer: users current score
+	 */
 	public int getScore(String name) {
 		int score = 0;
 		boolean found = false;
@@ -140,6 +164,11 @@ public class UserLinkedList {
 		return score;
 	}
 	
+	/**
+	 * Displays all data for each user 
+	 * in the format: Name: ... Score: ...
+	 * @return void
+	 */
 	public void displayAllData() {
 		Node tempNode = head;
 		if(tempNode == null) {
@@ -152,7 +181,7 @@ public class UserLinkedList {
 			}
 		}
 	}
-	//Inner node class for linked list
+	
 	public class Node {
 		User user;
 		Node next;

@@ -6,9 +6,18 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Main class of the program 
+ * Methods: main, yesNo, getValidString, userLogin
+ */
 public class dynamicWordle {
 	private static Scanner myScanner = new Scanner(System.in);
 	
+	/**
+	 * Main Method
+	 * @exception FileNotFoundException
+	 * @exception IOException
+	 */
 	public static void main(String[] args) throws FileNotFoundException, IOException{
 		//Initializing variables 
 		LinkedList<String> myWordList = new LinkedList<>();
@@ -61,7 +70,10 @@ public class dynamicWordle {
 		readFile.close();
 	}	
 	
-	//used to get (Yes || No) input from the user.
+	/**
+	 * Loops until valid input from user 
+	 * @return boolean for yes or no
+	 */
 	public static boolean yesNo() {
 		boolean myBool = false;
 		boolean hasAnswer = false;
@@ -85,6 +97,10 @@ public class dynamicWordle {
 		return myBool;
 	}
 	
+	/**
+	 * Loops until valid user string is entered
+	 * @return String: the users valid string
+	 */
 	public static String getValidString() {
 		boolean gotValid = false;
 		String validString = "";
@@ -103,8 +119,12 @@ public class dynamicWordle {
 		return validString;
 	}
 	
-	//function for user Sign up
-	//Returns the name of the current user
+	/**
+	 * Allows one user to log in or sign up depending on if name is in 
+	 * UserLinkedList
+	 * @param myUsers: A linked list class made for holding users
+	 * @return String: A string containing the name of the user
+	 */
 	public static String userLogin(UserLinkedList myUsers) {
 		System.out.println("============================================");
 		System.out.print("Please Enter your name First and Last: ");

@@ -3,14 +3,26 @@ package dynamicWordle;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+/**
+ * Represents one game, can be called multiple times
+ * Methods: getWord, playGame, displayRules, getGuess
+ */
 public class Game {
 	private LinkedList<String> words;
 	private Scanner myScanner = new Scanner(System.in);
 	
+	/**
+	 * This is the constructor for Game Class
+	 * @param words: A linked list containing your words
+	 */
 	public Game(LinkedList<String> words) {
 		this.words = words;
 	}
 	
+	/**
+	 * Gets one word at random from the words linked list
+	 * @return String: The random word
+	 */
 	public String getWord() {
 		int randNum = (int)(Math.random() * (words.size()));
 		
@@ -21,6 +33,10 @@ public class Game {
 		return words.get(randNum);
 	}
 	
+	/**
+	 * This represents one game and each game that is played will yield some points
+	 * @return Integer: The number of points obtained from that round
+	 */
 	public int playGame() {
 		String word = getWord().toLowerCase();
 		int wordLength = word.length();
@@ -87,10 +103,25 @@ public class Game {
 		return points;
 	}
 	
+	/**
+	 * This function displays the rules for the game
+	 * @return void
+	 */
 	public void displayRules() {
 		System.out.println("How to Play:");
+		System.out.printf("\nEach round you are given a random word.\n\n"
+				+ "The length of this word determines the number of guesses you get.\n\n"
+				+ "If the Number of guesses is reached and you have not guessed the word you lose.\n\n"
+				+ "Each guess MUST be a valid word that is the correct length."
+				+ "If you guess the word before your guesses run out points are added to your total.\n\n"
+				+ "Invalid guesses do not count as a real guess\n\n");
 	}
 	
+	/**
+	 * Gets a valid guess from the user
+	 * @param length: Length of the current word
+	 * @return String: The users guess
+	 */
 	private String getGuess(int length) {
 		String guess = "";
 		System.out.printf("\nEnter your guess: ");
